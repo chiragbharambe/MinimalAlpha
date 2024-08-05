@@ -1,0 +1,8 @@
+{{ define "main" }}
+<article data-pagefind-body>
+  <h1 data-pagefind-meta="title">{{ .Title | markdownify }}</h1>
+  {{ with .Description }}<p class="description">{{ . }}</p>{{ end }}
+  {{ partial "displaytags.html" . }}<hr>
+  <main>{{ .Content }}</main>
+</article>
+{{ end }}

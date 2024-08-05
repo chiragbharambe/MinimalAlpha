@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+          <h1 class="site-title">{{ .Site.Title }}</h1>
+          <nav><ul class="menu {{ if .IsPage }}single-menu{{ end }}">
+              {{ range .Site.Menus.main }}
+              <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+              {{ end }}
+          </ul></nav>
+      </div>
+      <main class="main-content">
+        {{ block "main" . }}{{ end }}
+      </main>
+    </div>
+    <footer>
+      {{ $words := 0 }}
+      {{ $readingTime := 0 }}
+      {{ if .IsPage }}
+        {{ $words = .WordCount }}
+        {{ $readingTime = .ReadingTime }}
+      {{ else }}
+        {{ $pages := cond .IsHome .Site.RegularPages .Pages }}
+        {{ range $pages }}
+          {{ $words = add $words .WordCount }}
+          {{ $readingTime = add $readingTime .ReadingTime }}
+        {{ end }}
+      {{ end }}
+      <p>{{ $words }} Words<br> Reading Time: {{ if ge $readingTime 60 }}{{ div $readingTime 60 }}h {{ end }}{{ mod $readingTime 60 }}m <br>
+        {{ with .Site.Params.socials }}
+          {{ $length := len . }}
+          {{ range $i, $s := . }}
+            {{ $p := split $s "-" }}
+            <a href="{{ index $p 1 }}" target="_blank">{{ index $p 0 }}</a>
+            {{- if ne (add $i 1) $length }}{{ " . " }}{{ end -}}
+          {{ end }}
+        {{ end }}
+        <br><a href="/about/">About</a><br>Built with Hugo, MinimalAlpha by Chirag Bharambe
+    </footer>
+  </body>
+</html>

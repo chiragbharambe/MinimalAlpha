@@ -1,0 +1,8 @@
+{{ with .Params.tags }}
+<span class="post-tags">
+  {{ range $index, $tag := . }}
+    {{- if $index }}<span style="font-size: 0.7em;"> / </span>{{ end -}}
+    <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}">{{ $tag }}</a>
+  {{- end }}
+</span>
+{{ end }}

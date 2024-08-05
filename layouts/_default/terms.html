@@ -1,0 +1,7 @@
+{{ define "main" }}
+<ul class="terms" style="color: #01865f;">
+  {{ range .Data.Terms }}
+  <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ .Count }})</li>
+  {{ end }}
+</ul>
+{{ end }}

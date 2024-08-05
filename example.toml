@@ -1,0 +1,56 @@
+baseURL = 'https://bharam.be'
+languageCode = 'en'
+title = 'Chirag Bharam.be'
+theme = 'MinimalAlpha'
+
+[markup]
+[markup.highlight]
+style = "tango"
+
+[params]
+# Required for pagefind to work
+titleSeparator = "|"
+titleCase = "title"
+indexSelector = "article[data-pagefind-body]"
+# You can add whatever links you want. Use the given format.
+socials = [
+  "Github-https://github.com/chiragbharambe",
+  "LinkedIn-https://www.linkedin.com/in/chiragbharambe/",
+]
+
+[menu]
+[[menu.main]]
+identifier = "Home"
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+identifier = "post"
+name = "Posts"
+url = "/posts/"
+weight = 1
+
+[[menu.main]]
+identifier = "snippets"
+name = "Snippets"
+url = "/snippets/"
+weight = 1
+
+[[menu.main]]
+name = "Tags"
+url = "/tags/"
+weight = 2
+
+#[[menu.main]]
+#name = "Categories"
+#url = "/categories/"
+#weight = 2
+
+[taxonomies]
+category = "categories"
+series = "series"
+tag = "tags"
+
+[outputs]
+home = ["HTML", "RSS"]
